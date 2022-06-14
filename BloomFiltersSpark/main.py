@@ -101,7 +101,6 @@ if __name__ == "__main__":
 
     # Puts the dataset in the form of [(key1, hash_list1[]), (key2, hash_list2[]), ...]
     hashed_dataset = rating_titles.map(lambda x: (x[0], calc_hash(x[0], x[1])))
-    hashed_dataset.cache()
 
     # Creates the bloom filters, given each key and its list of hashes
     bf_rdd = hashed_dataset.map(lambda x: (x[0], create_bloom_filter(x[0], x[1])))
